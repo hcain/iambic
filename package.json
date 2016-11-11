@@ -1,0 +1,19 @@
+{
+  "name": "iambic",
+  "version": "1.0.0",
+  "description": "an iambic pentameter poetry generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hcain/iambic.git"
+  },
+  "author": "Hannah Cain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hcain/iambic/issues"
+  },
+  "homepage": "https://github.com/hcain/iambic#readme"
+}
