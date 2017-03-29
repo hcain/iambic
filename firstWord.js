@@ -1,6 +1,6 @@
 
 let firstWord = 'divine';
-             // ^^^^^^ Change first word here
+             // ^^^^^^ Change word here
 
 module.exports = firstWord;
 

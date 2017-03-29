@@ -37,7 +37,7 @@ function getFirstWord (input) {
   }
 
   // if word is not viable or in danteInDictionary
-  return 'The';
+  return 'Divine';
 }
 
 function getRandomWord () {
