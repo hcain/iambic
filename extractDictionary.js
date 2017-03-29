@@ -21,7 +21,6 @@ const stringsToObjects = function (arr) {
     let obj = {};
     for (let i = 0; i < arr.length; i++) {
         let newKey = arr[i].match(/^[^\s]+/);
-        //console.log(newKey.toString().length)
         obj[newKey] = arr[i].slice(newKey.toString().length + 2);
     }
     return obj;

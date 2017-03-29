@@ -10,12 +10,12 @@ app.listen(3000, function(){
 });
 
 
-const danteInDictionary = require('./matchDanteAndDictionary.js');
-const poem = require('./poemGenerator.js');
-
+const firstWord = require('./firstWord.js');
 
 app.get('/', function(req, res, next){
+    // inside get, so poem will change when refreshed
+    const poem = require('./poemGenerator.js');
 
-    res.send(poem)
-})
+    res.send(poem(firstWord));
+});
 
