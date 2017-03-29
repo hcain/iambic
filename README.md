@@ -10,8 +10,8 @@ Node (>=6.x) and npm (>=3.x)
 
 ### To Run
 
-- Iambic does not require any dependencies to run, so 'npm start' should suffice.
 ```sh
+npm install
 npm start
 ```
 
@@ -25,12 +25,9 @@ npm start
 
 - Run (or rerun) Iambic.
 
-### Changing the First Word A LOT
-
-- If you wish to change the first word frequently and with ease, I would suggest installing the dev-dependancies in order to run nodemon.  Nodemon will watch and restart the server anytime changes are made in any of the files, including firstWord.js, are saved.
+- If you wish to change the first word frequently and with ease, I would suggest running with nodemon.  Nodemon will watch and restart the server anytime changes in any of the files, including firstWord.js, are saved.
 
 ```sh
-npm install --only=dev
-npm run start-dev
+npm run start-nodemon
 ```
 
