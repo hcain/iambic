@@ -1,5 +1,6 @@
 'use strict'
-const danteInDictionary = require('./matchDanteAndDictionary.js');
+
+const authorInDictionary = require('./matchAuthorAndDictionary.js');
 const dictionaryObject = require('./extractDictionary.js');
 
 
@@ -16,8 +17,11 @@ function randomWordIndex (arr) {
 function checkStress (word) {
   if (!word) return null;
   let wordSyllables = dictionaryObject[formatWord(word)];
-  if (wordSyllables === undefined) return null;
+  // console.log(wordSyllables)
+  // if (wordSyllables === undefined) return null;
   let wordStress = wordSyllables.match(/[0-9]+/ig).join('');
+  // "cooler", "unbridled", "accompaniment", "alberto" returned null
+  // console.log(wordStress)
   return wordStress;
 }
 
@@ -31,24 +35,24 @@ function getFirstWord (input) {
       word = word.toLowerCase();
     }
 
-    if (danteInDictionary.hasOwnProperty(word)) {
+    if (authorInDictionary.hasOwnProperty(word)) {
       return word[0].toUpperCase() + word.slice(1);
     }
   }
 
-  // if word is not viable or in danteInDictionary
+  // if word is not viable or in authorInDictionary
   return 'Divine';
 }
 
 function getRandomWord () {
-  // length of danteInDictionary
+  // length of authorInDictionary
   let count = 0;
-  for (let key in danteInDictionary) {
+  for (let key in authorInDictionary) {
     count++;
   }
-  // random 'index' of danteInDictionary
+  // random 'index' of authorInDictionary
   let index = Math.floor(Math.random() * count);
-  for (let newKey in danteInDictionary) {
+  for (let newKey in authorInDictionary) {
     if (index > 0) index--;
     else return newKey;
   }
@@ -74,7 +78,7 @@ function getNextWord(currentWord, counter) {
   if (counter === undefined) { counter = 0 }
   let stressOfCurrent = checkStress(currentWord);
   let newStress;
-  let arrayOfNext = danteInDictionary[currentWord];
+  let arrayOfNext = authorInDictionary[currentWord];
   let possibleNext;
   let possibleStress;
 
@@ -82,7 +86,8 @@ function getNextWord(currentWord, counter) {
   if (arrayOfNext) {
     possibleNext = arrayOfNext[randomWordIndex(arrayOfNext)];
     possibleStress = checkStress(possibleNext);
-  } else {
+  } 
+  else {
     return getNextWord(getRandomWord());
   }
 
@@ -102,15 +107,14 @@ function getNextWord(currentWord, counter) {
   }
 
   //compare stresses
-  if (stressOfCurrent.slice(-1) === 0) newStress = 1;
-  else newStress = 0;
+  if ( Number.parseInt(stressOfCurrent.slice(-1), 10) === 0) { newStress = 1; }
+  else { newStress = 0; }
 
   // use a 2 stress as a 1 stress
   // future improvements: include logic to utilize 1 < 2 for stress
   //  will need to look at backwards stresses, not just the preceding one
   if (possibleStress[0] === 2) possibleStress[0] = 1;
-
-  if (Number.parseInt(possibleStress[0], [10]) === Number.parseInt(newStress, [10]) ) {
+  if (Number.parseInt(possibleStress[0], [10]) === newStress ) {
     return possibleNext;
   } else {
     counter++;
@@ -128,7 +132,7 @@ function getLine(currentWord, start) {
   }
 
   while (currentLineStress.length < 10 ) {
-    currentWord = getNextWord(currentWord);
+    currentWord = getNextWord(currentWord.toLowerCase());
     currentLine += ' ' + currentWord;
     currentLineStress += (checkStress(currentWord));
   }
@@ -158,6 +162,7 @@ function getPoem (startWord) {
   return poemLines;
 }
 
-
 module.exports = getPoem;
+
+// authorInDictionary["my"]; 
 

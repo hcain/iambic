@@ -1,5 +1,6 @@
+'use strict';
 
-let firstWord = 'divine';
+let firstWord = 'my';
              // ^^^^^^ Change word here
 
 module.exports = firstWord;

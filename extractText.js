@@ -1,21 +1,27 @@
+'use strict';
 
 const fs = require('fs');
-var path = require('path');
-const danteFilePath = path.join(__dirname, 'TextFiles/dante');
+const path = require('path');
+const authorFilePath = path.join(__dirname, 'TextFiles/poe.txt');
 
 
 // this code was used to convert pdf to text file:
-// const dantePDF = path.join(__dirname, 'dante.pdf');
-//  var pdftotext = require('pdftotextjs'),
-//     pdf = new pdftotext(dantePDF);
-//  var data = pdf.getTextSync();
-// console.log(data);
-// module.exports = data;
+// var filePath = path.join(__dirname, 'TextFiles/poe.pdf')
+// var extract = require('pdf-text-extract')
+// extract(filePath, { splitPages: false }, function (err, text) {
+//   if (err) {
+//     console.dir(err)
+//     return
+//   }
+//   const editedText = text.join('\n', ' ')
+//   fs.writeFile('TextFiles/poe.txt', editedText, function (err) {
+//     if (err) return console.log(err);})
+// })
 
 
 //convert text into word bank
-const file = fs.readFileSync(danteFilePath, 'utf8');
-const danteArray = file.replace(/\s+/g, ' ').split(' ');
+const file = fs.readFileSync(authorFilePath, 'utf8');
+const authorArray = file.replace(/\s+/g, ' ').split(' ');
 
 
 //convert into marchov chain
@@ -41,6 +47,7 @@ const marchov = function (arr) {
             // add words(s) to Marchov chain
             if (obj.hasOwnProperty(word)) {
                 obj[word].push(nextWord);
+                // console.log(word, nextWord)
             } else {
                 obj[word] = [nextWord];
             }
@@ -48,6 +55,6 @@ const marchov = function (arr) {
     }
     return obj;
 }
-const danteMarchovObject = marchov(danteArray);
+const authorMarchovObject = marchov(authorArray);
 
-module.exports = danteMarchovObject;
+module.exports = authorMarchovObject;

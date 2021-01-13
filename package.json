@@ -4,7 +4,7 @@
   "description": "an iambic pentameter poetry generator",
   "main": "index.js",
   "scripts": {
-    "start-nodemon": "nodemon index.js",
+    "start-dev": "nodemon index.js",
     "start": "node index.js",
     "test": "test"
   },
@@ -18,12 +18,14 @@
     "url": "https://github.com/hcain/iambic/issues"
   },
   "homepage": "https://github.com/hcain/iambic#readme",
-   "dependencies": {
-    "express": "^4.15.2",
-    "nodemon": "^1.11.0"
+  "dependencies": {
+    "express": "^4.17.1",
+    "next": "^10.0.5",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "pdf-text-extract": "^1.4.1"
   }
- 
 }
